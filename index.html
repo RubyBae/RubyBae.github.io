@@ -1,8 +1,96 @@
 <html>
-    <head>
-        <title>Ruby</title>
-    </head>
-    <body>
-        Ruby's personal portfolio.
-    </body>
+  <head>
+    <title>Ruby</title>
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+      ref="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="sidebar">
+          <div class="header">
+            <h1>
+              Ruby
+            </h1>
+          </div>
+          <div class="items"></div>
+        </div>
+        <div id="content" class="content">
+          Hi I'm Ruby, but you've likely already figured that out. I'm a <b>full stack</b> freelance developer with an ample amount of experience between multiple languages, platforms and environments. I've worked on plenty of projects varying from small personal projects to multi-employee team-based projects at scale, these projects cover a wide set of differential topics such as backend <b>Node.js</b> or <b>PHP</b> data handling, processing, database management and or JSON Web APIs, I’ve also had focus on frontend design, and System Administration in various environments covering many Linux distributions and Windows.
+
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.js"></script>
+    <script>
+      
+      let randomize_bold = false;
+      let progressive_size = true;
+
+      // I don't know why I wrote this.
+
+      let text = "";
+      let size = 15;
+      
+      let content = document.getElementById("content");
+      content.innerHTML.split(" ").forEach(str => {        
+        if (randomize_bold && Math.random() > 0.8) {
+          str = "<b>" + str + "</b>";
+        }
+
+        if (progressive_size) {
+          str = `<span style="font-size:${size}px">` + str + "</span>";
+          size += 0.1;;
+        }
+
+        text += " " + str;
+      });
+
+      content.innerHTML = text;
+
+      
+      // Contact resources.
+      const resources = {
+        Twitter: "twitter.com/RubyTheRosey",
+        Discord: "discord.gg/rj3YQQu",
+        NPM: "npmjs.com/~rubybae",
+        GitHub: "github.com/rubybae",
+        Reddit: "",
+        "Quickest way to reach me": "discord.gg/rj3YQQu"
+      };
+
+      let array = Object.keys(resources).sort((first, second) => {
+        if (first.length > second.length) {
+          return -1;
+        }
+
+        return 0;
+      });
+
+      let items = document.getElementsByClassName("items")[0];
+      array.forEach(key => {
+        let url = "https://" + resources[key].toLowerCase();
+        let item = document.createElement("div");
+
+        item.setAttribute("class", "item");
+        item.addEventListener("click", event => {
+          open(url);
+        });
+
+        item.title = `Navigate to "${url}"`;
+
+        item.innerHTML = `<div class="icon"><i class="fab fa-${key.toLowerCase()}"></i></div><p>${key}</p>`;
+        items.appendChild(item);
+      });
+    </script>
+  </body>
 </html>
